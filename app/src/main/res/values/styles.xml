@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    
+    <style name="primaryButtonsNumber">
+        <item name="cornerRadius">@dimen/_8cdp</item>
+        <item name="android:padding">@dimen/_8cdp</item>
+        <item name="android:layout_margin">@dimen/_8cdp</item>
+        <item name="backgroundTint">?colorPrimaryVariant</item>
+        <item name="android:textSize">@dimen/_24cdp</item>
+        <item name="android:textColor">?colorOnSecondary</item>
+    </style>
+</resources>
