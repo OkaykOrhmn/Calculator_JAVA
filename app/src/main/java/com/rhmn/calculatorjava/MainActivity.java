@@ -29,6 +29,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private boolean inAdvance = false;
 
     private int lenthAdvance = 0;
+    private int lenthAdvance0 = 0;
+    private int isPower = 0;
+
+    private double a = 0;
+    private double b = 0;
     private static final String TAG = "KIANOOSH";
 
     @SuppressLint("SourceLockedOrientationActivity")
@@ -117,7 +122,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 assignId(binding.log);
                 assignId(binding.symbolOpen);
                 assignId(binding.symbolClose);
-                assignId(binding.symbolX2);
+                assignId(binding.symbolPower);
                 assignId(binding.symbolRadikal);
             }
 
@@ -218,14 +223,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         }
 
-
-        //xⁿ
-        if (buttonText.equals("xⁿ")  ){
-            binding.calculatingTv.setText(binding.calculatingTv.getText()+ "^");
-            Log.d(TAG, "xⁿ: "+binding.calculatingTv.getText().toString());
-            return;
-        }
-
         //%
         if (buttonText.equals("%")  ){
             if (binding.calculatingTv.getText().toString().endsWith("%")){
@@ -258,20 +255,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.advance.setText("cos(");
                 Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
 
-                binding.symbolSin.setClickable(inAdvance);
-                binding.symbolTan.setClickable(inAdvance);
-                binding.log.setClickable(inAdvance);
+                setClickable(inAdvance);
+                binding.symbolCos.setClickable(!inAdvance);
                 inAdvance = true;
 
             }else{
                 binding.advance.setText("");
 
                 if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
-                    Toast.makeText(this, "please insert a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
 
                 }else {
@@ -282,9 +276,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance)
                             + result);
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
                 }
             }
@@ -298,20 +290,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.advance.setText("sin(");
                 Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
 
-                binding.symbolCos.setClickable(inAdvance);
-                binding.symbolTan.setClickable(inAdvance);
-                binding.log.setClickable(inAdvance);
+                setClickable(inAdvance);
+                binding.symbolSin.setClickable(!inAdvance);
                 inAdvance = true;
 
             }else{
                 binding.advance.setText("");
 
                 if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
-                    Toast.makeText(this, "please insert a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
 
-                    binding.symbolCos.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
 
                 }else {
@@ -322,9 +311,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance)
                             + result);
 
-                    binding.symbolCos.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
                 }
             }
@@ -338,20 +325,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.advance.setText("tan(");
                 Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
 
-                binding.symbolSin.setClickable(inAdvance);
-                binding.symbolCos.setClickable(inAdvance);
-                binding.log.setClickable(inAdvance);
+                setClickable(inAdvance);
+                binding.symbolTan.setClickable(!inAdvance);
                 inAdvance = true;
 
             }else{
                 binding.advance.setText("");
 
                 if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
-                    Toast.makeText(this, "please insert a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolCos.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
 
                 }else {
@@ -362,9 +346,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance)
                             + result);
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolCos.setClickable(inAdvance);
-                    binding.log.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
                 }
             }
@@ -378,20 +360,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 binding.advance.setText("log(");
                 Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
 
-                binding.symbolSin.setClickable(inAdvance);
-                binding.symbolTan.setClickable(inAdvance);
-                binding.symbolCos.setClickable(inAdvance);
+                setClickable(inAdvance);
+                binding.log.setClickable(!inAdvance);
                 inAdvance = true;
 
             }else{
                 binding.advance.setText("");
 
                 if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
-                    Toast.makeText(this, "please insert a number", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.symbolCos.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
 
                 }else {
@@ -402,13 +381,97 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance)
                             + result);
 
-                    binding.symbolSin.setClickable(inAdvance);
-                    binding.symbolTan.setClickable(inAdvance);
-                    binding.symbolCos.setClickable(inAdvance);
+                    setClickable(inAdvance);
                     inAdvance = false;
                 }
             }
             return;
+        }
+
+        //radical
+        if (buttonText.equals("√")){
+            if (!inAdvance) {
+                lenthAdvance = binding.calculatingTv.getText().toString().length();
+                binding.advance.setText("√(");
+                Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
+
+                setClickable(inAdvance);
+                binding.symbolRadikal.setClickable(!inAdvance);
+                inAdvance = true;
+
+            }else{
+                binding.advance.setText("");
+                if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
+
+                    setClickable(inAdvance);
+                    inAdvance = false;
+
+                }else {
+                    double aDouble = Double.parseDouble(binding.calculatingTv.getText().toString().substring(lenthAdvance));
+                    double result = Math.sqrt(aDouble);
+                    Log.d(TAG, "): " + result);
+
+                    binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance)
+                            + result);
+
+                    setClickable(inAdvance);
+                    inAdvance = false;
+                }
+            }
+            return;
+        }
+
+        //power
+        if (buttonText.equals("xⁿ")){
+            if (isPower == 0){
+                lenthAdvance0 = binding.calculatingTv.getText().toString().length();
+                binding.advance.setText("x(");
+                Toast.makeText(this, "عدد را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
+
+                setClickable(false);
+                binding.symbolPower.setClickable(true);
+                isPower = 1;
+
+            }else if(isPower == 1){
+                if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
+                    binding.advance.setText("");
+                    setClickable(true);
+                    isPower = 0;
+
+                }else {
+                    a = Double.parseDouble(binding.calculatingTv.getText().toString().substring(lenthAdvance0));
+                    lenthAdvance = binding.calculatingTv.getText().toString().length();
+                    binding.advance.setText("n(");
+                    Toast.makeText(this, "توان را وارد کنید سپس دوباره کلیک کنید", Toast.LENGTH_SHORT).show();
+                    isPower = 2;
+                }
+
+            }else if (isPower == 2 ){
+
+                if (binding.calculatingTv.getText().equals("")|| binding.calculatingTv.getText().length() == lenthAdvance){
+                    Toast.makeText(this, "عدد نمیتواند خالی باشد!", Toast.LENGTH_SHORT).show();
+                    binding.advance.setText("");
+                    setClickable(true);
+                    isPower = 0;
+
+                }else {
+                    b = Double.parseDouble(binding.calculatingTv.getText().toString().substring(lenthAdvance));
+                    binding.advance.setText("");
+                    double result = Math.pow(a, b);
+
+                    binding.calculatingTv.setText(binding.calculatingTv.getText().toString().substring(0, lenthAdvance0)
+                            + result);
+                    isPower = 0;
+
+                    setClickable(true);
+                }
+
+            }
+
+            return;
+
         }
 
 
@@ -417,7 +480,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             binding.calculatingTv.setText(binding.calculatingResult.getText());
             return;
         }
-
 
         //delete
         if (button == binding.delete){
@@ -439,6 +501,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (inAdvance){
                 if (binding.calculatingTv.length() <= lenthAdvance){
                     inAdvance = false;
+                    binding.advance.setText("");
+                }
+            }
+
+            if (isPower != 0){
+                if (binding.calculatingTv.length() <= lenthAdvance0){
+                    isPower = 0;
                     binding.advance.setText("");
                 }
             }
@@ -479,5 +548,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }catch (Exception e){
             return "Err";
         }
+    }
+
+    public void setClickable(boolean b){
+        binding.symbolCos.setClickable(b);
+        binding.symbolSin.setClickable(b);
+        binding.symbolTan.setClickable(b);
+        binding.log.setClickable(b);
+        binding.symbolRadikal.setClickable(b);
+        binding.symbolPower.setClickable(b);
+        binding.symbolOpen.setClickable(b);
+        binding.symbolClose.setClickable(b);
     }
 }

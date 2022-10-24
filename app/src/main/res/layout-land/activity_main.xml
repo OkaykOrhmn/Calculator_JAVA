@@ -335,7 +335,7 @@
 
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/symbol_x2"
+                android:id="@+id/symbol_power"
                 style="@style/primaryButtonsNumber"
                 android:layout_width="@dimen/_64cdp"
                 android:layout_height="@dimen/_64cdp"
